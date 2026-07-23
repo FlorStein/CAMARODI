@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
@@ -152,8 +152,9 @@
     }
     .service-card:hover { transform: translateY(-4px); box-shadow: 0 12px 36px rgba(62,46,30,0.13); }
 
-    .service-img { width: 100%; aspect-ratio: 4/3; overflow: hidden; }
-    .service-img img { width: 100%; height: 100%; object-fit: cover; object-position: center; transition: transform 0.5s ease; filter: saturate(.88) contrast(1.03) brightness(1.02); }
+    .service-img { width: 100%; aspect-ratio: 16/9; overflow: hidden; background: var(--cream-dark); }
+    .service-img img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 57%; transition: transform 0.5s ease; filter: saturate(.88) contrast(1.03) brightness(1.02); }
+    .service-img img[src*="tratamiento-"] { object-position: 50% 44%; }
     .service-card:hover .service-img img { transform: scale(1.04); transform-origin: center top; }
 
     .service-card-body { padding: 1.4rem 1.6rem 1.6rem; display: flex; flex-direction: column; gap: 0.7rem; flex: 1; }
@@ -435,7 +436,7 @@
         <div class="services-grid">
 
           <div class="service-card fade-in">
-            <div class="service-img"><img src="images/1771883811089.png" alt="Masaje Relajante" /></div>
+            <div class="service-img"><img src="images/clean-1771883811089.jpg" alt="Masaje Relajante" /></div>
             <div class="service-card-body">
               <h3 class="service-name">Masaje Relajante</h3>
               <p class="service-desc">Técnica suave y envolvente que libera tensiones acumuladas, reduce el estrés y promueve un estado de calma profunda. Ideal para el primer acercamiento al masaje.</p>
@@ -448,7 +449,7 @@
           </div>
 
           <div class="service-card fade-in">
-            <div class="service-img"><img src="images/1771883286448.png" alt="Masaje Descontracturante" /></div>
+            <div class="service-img"><img src="images/clean-1771883286448.jpg" alt="Masaje Descontracturante" /></div>
             <div class="service-card-body">
               <h3 class="service-name">Masaje Descontracturante</h3>
               <p class="service-desc">Trabaja en profundidad sobre las contracturas musculares. Libera nudos y puntos de tensión con presión focalizada, devolviendo movilidad y alivio duradero.</p>
@@ -461,7 +462,7 @@
           </div>
 
           <div class="service-card fade-in">
-            <div class="service-img"><img src="images/1771881995435.png" alt="Tejido Profundo" /></div>
+            <div class="service-img"><img src="images/clean-1771881995435.jpg" alt="Tejido Profundo" /></div>
             <div class="service-card-body">
               <h3 class="service-name">Tejido Profundo</h3>
               <p class="service-desc">Técnica avanzada que actúa sobre las capas musculares más profundas. Ideal para dolores crónicos, rigidez y rehabilitación de lesiones musculares.</p>
@@ -474,7 +475,7 @@
           </div>
 
           <div class="service-card fade-in">
-            <div class="service-img"><img src="images/1771883003806.png" alt="Masaje Deportivo" /></div>
+            <div class="service-img"><img src="images/clean-1771883003806.jpg" alt="Masaje Deportivo" /></div>
             <div class="service-card-body">
               <h3 class="service-name">Masaje Deportivo</h3>
               <p class="service-desc">Diseñado para deportistas y personas activas. Prepara el cuerpo antes del esfuerzo y acelera la recuperación muscular post-actividad física.</p>
@@ -487,7 +488,7 @@
           </div>
 
           <div class="service-card fade-in">
-            <div class="service-img"><img src="images/1771884736776.png" alt="Masaje Holístico" /></div>
+            <div class="service-img"><img src="images/clean-1771884736776.jpg" alt="Masaje Holístico" /></div>
             <div class="service-card-body">
               <h3 class="service-name">Masaje Holístico</h3>
               <p class="service-desc">Abordaje integral que armoniza cuerpo, mente y espíritu. Combina distintas técnicas para crear una experiencia profunda de reconexión y equilibrio interno.</p>
@@ -500,7 +501,7 @@
           </div>
 
           <div class="service-card fade-in">
-            <div class="service-img"><img src="images/1771881392632.png" alt="Shiatsu" /></div>
+            <div class="service-img"><img src="images/clean-1771881392632.jpg" alt="Shiatsu" /></div>
             <div class="service-card-body">
               <h3 class="service-name">Shiatsu</h3>
               <p class="service-desc">Arte terapéutico japonés basado en la presión sobre meridianos energéticos. Restablece el flujo vital, alivia el dolor y promueve el equilibrio emocional.</p>
@@ -513,7 +514,7 @@
           </div>
 
           <div class="service-card fade-in">
-            <div class="service-img"><img src="images/1771884147050.png" alt="Piedras Calientes" /></div>
+            <div class="service-img"><img src="images/clean-1771884147050.jpg" alt="Piedras Calientes" /></div>
             <div class="service-card-body">
               <h3 class="service-name">Piedras Calientes</h3>
               <p class="service-desc">Piedras de basalto volcánico calentadas a temperatura ideal que penetran en la musculatura, liberan tensiones profundas y generan una profunda sensación de calma.</p>
@@ -526,7 +527,7 @@
           </div>
 
           <div class="service-card fade-in">
-            <div class="service-img"><img src="images/1771881615886.png" alt="Masaje para Embarazadas" /></div>
+            <div class="service-img"><img src="images/clean-1771881615886.jpg" alt="Masaje para Embarazadas" /></div>
             <div class="service-card-body">
               <h3 class="service-name">Masaje para Embarazadas</h3>
               <p class="service-desc">Técnica suave y segura especialmente adaptada para el embarazo. Alivia dolores específicos, mejora la circulación y acompaña el bienestar emocional en esta etapa.</p>
@@ -539,7 +540,7 @@
           </div>
 
           <div class="service-card fade-in">
-            <div class="service-img"><img src="images/1771881720760.png" alt="Reflexología" /></div>
+            <div class="service-img"><img src="images/clean-1771881720760.jpg" alt="Reflexología" /></div>
             <div class="service-card-body">
               <h3 class="service-name">Reflexología</h3>
               <p class="service-desc">Técnica que trabaja sobre puntos reflejos del pie vinculados a órganos y sistemas. Estimula la auto-sanación, reduce el estrés y mejora la circulación de todo el cuerpo.</p>
@@ -552,7 +553,7 @@
           </div>
 
           <div class="service-card fade-in">
-            <div class="service-img"><img src="images/1771884859842.png" alt="Aromaterapia" /></div>
+            <div class="service-img"><img src="images/clean-1771884859842.jpg" alt="Aromaterapia" /></div>
             <div class="service-card-body">
               <h3 class="service-name">Aromaterapia</h3>
               <p class="service-desc">Masaje enriquecido con aceites esenciales de origen botánico, seleccionados según tus necesidades. La combinación del tacto y el aroma potencia el efecto terapéutico.</p>
@@ -572,7 +573,7 @@
         <div class="services-grid">
 
           <div class="service-card fade-in">
-            <div class="service-img"><img src="images/1771883997906.png" alt="Drenaje Linfático" /></div>
+            <div class="service-img"><img src="images/clean-1771883003806.jpg" alt="Drenaje Linfático" /></div>
             <div class="service-card-body">
               <h3 class="service-name">Drenaje Linfático</h3>
               <p class="service-desc">Técnica manual que estimula el sistema linfático, reduce la retención de líquidos, edemas y mejora la circulación. Ideal en pre y post operatorio o como preventivo.</p>
@@ -585,7 +586,7 @@
           </div>
 
           <div class="service-card fade-in">
-            <div class="service-img"><img src="images/1771884378965.png" alt="Facial Pro-Age" /></div>
+            <div class="service-img"><img src="images/clean-1771884378965.jpg" alt="Facial Pro-Age" /></div>
             <div class="service-card-body">
               <h3 class="service-name">Facial Pro-Age</h3>
               <p class="service-desc">Tratamiento facial antienvejecimiento que nutre, hidrata y revitaliza la piel. Combina masajes, activos cosméticos premium y técnicas que devuelven luminosidad.</p>
@@ -598,7 +599,7 @@
           </div>
 
           <div class="service-card fade-in">
-            <div class="service-img"><img src="images/1771885547995.png" alt="Cosmetología Integral" /></div>
+            <div class="service-img"><img src="images/clean-1771885547995.jpg" alt="Cosmetología Integral" /></div>
             <div class="service-card-body">
               <h3 class="service-name">Cosmetología Integral</h3>
               <p class="service-desc">Tratamiento facial completo con diagnóstico de piel, limpieza profunda, exfoliación, hidratación y activos específicos para tu tipo de piel. Resultado visible desde la primera sesión.</p>
@@ -611,7 +612,7 @@
           </div>
 
           <div class="service-card fade-in">
-            <div class="service-img"><img src="images/1771885836207.png" alt="Hidralips" /></div>
+            <div class="service-img"><img src="images/clean-1771885836207.jpg" alt="Hidralips" /></div>
             <div class="service-card-body">
               <h3 class="service-name">Hidralips</h3>
               <p class="service-desc">Tratamiento especializado para labios que aporta hidratación profunda, suavidad y volumen de forma natural. Deja los labios nutridos, definidos y radiantes.</p>
@@ -624,7 +625,7 @@
           </div>
 
           <div class="service-card fade-in">
-            <div class="service-img"><img src="images/1771885455497.png" alt="Radiofrecuencia Facial" /></div>
+            <div class="service-img"><img src="images/clean-1771885455497.jpg" alt="Radiofrecuencia Facial" /></div>
             <div class="service-card-body">
               <h3 class="service-name">Radiofrecuencia Facial</h3>
               <p class="service-desc">Tecnología de última generación que estimula el colágeno y la elastina, mejorando la firmeza y el tono facial. Resultados visibles y progresivos con cada sesión.</p>
@@ -640,7 +641,7 @@
           </div>
 
           <div class="service-card fade-in">
-            <div class="service-img"><img src="images/1771885398771.png" alt="Radiofrecuencia Corporal" /></div>
+            <div class="service-img"><img src="images/clean-1771885398771.jpg" alt="Radiofrecuencia Corporal" /></div>
             <div class="service-card-body">
               <h3 class="service-name">Radiofrecuencia Corporal</h3>
               <p class="service-desc">Tratamiento no invasivo que reafirma y tonifica la piel corporal. Actúa sobre la flacidez, mejora la textura y modela la silueta de forma efectiva y segura.</p>
@@ -656,7 +657,7 @@
           </div>
 
           <div class="service-card fade-in">
-            <div class="service-img"><img src="images/1771885302627.png" alt="Ultracavitación" /></div>
+            <div class="service-img"><img src="images/clean-1771885302627.jpg" alt="Ultracavitación" /></div>
             <div class="service-card-body">
               <h3 class="service-name">Ultracavitación</h3>
               <p class="service-desc">Tecnología ultrasónica que destruye células adiposas de forma localizada, sin cirugía. Ideal para reducir medidas en zonas específicas como abdomen, flancos y piernas.</p>
@@ -672,7 +673,7 @@
           </div>
 
           <div class="service-card fade-in">
-            <div class="service-img"><img src="images/1771884444355.png" alt="Reductor y Modelador" /></div>
+            <div class="service-img"><img src="images/clean-1771884444355.jpg" alt="Reductor y Modelador" /></div>
             <div class="service-card-body">
               <h3 class="service-name">Reductor y Modelador</h3>
               <p class="service-desc">Tratamiento corporal que combina técnicas manuales y productos reductores de alta concentración para moldear la silueta, reducir medidas y mejorar la calidad de la piel.</p>
@@ -720,7 +721,7 @@
         <div class="services-grid">
           <div class="service-card fade-in">
             <span class="tag-new">Favorito</span>
-            <div class="service-img"><img src="images/1771885547995.png" alt="Combo Glow facial" loading="lazy" /></div>
+            <div class="service-img"><img src="images/clean-1771885547995.jpg" alt="Combo Glow facial" loading="lazy" /></div>
             <div class="service-card-body">
               <h3 class="service-name">Combo Glow Facial</h3>
               <p class="service-desc">Cosmetología integral + espátula sónica + máscara LED. Una experiencia completa para limpiar, renovar e iluminar la piel.</p>
@@ -729,7 +730,7 @@
             </div>
           </div>
           <div class="service-card fade-in">
-            <div class="service-img"><img src="images/1771883997906.png" alt="Combo pausa y bienestar" loading="lazy" /></div>
+            <div class="service-img"><img src="images/clean-1771883811089.jpg" alt="Combo pausa y bienestar" loading="lazy" /></div>
             <div class="service-card-body">
               <h3 class="service-name">Combo Pausa &amp; Bienestar</h3>
               <p class="service-desc">Masaje relajante + reflexología. Un recorrido corporal pensado para bajar el ritmo, soltar tensiones y recuperar energía.</p>
@@ -738,7 +739,7 @@
             </div>
           </div>
           <div class="service-card fade-in">
-            <div class="service-img"><img src="images/1771884444355.png" alt="Combo modelador corporal" loading="lazy" /></div>
+            <div class="service-img"><img src="images/clean-1771884444355.jpg" alt="Combo modelador corporal" loading="lazy" /></div>
             <div class="service-card-body">
               <h3 class="service-name">Combo Modelador</h3>
               <p class="service-desc">Ultracavitación + radiofrecuencia corporal + masaje reductor. Tres técnicas combinadas en un protocolo personalizado.</p>
