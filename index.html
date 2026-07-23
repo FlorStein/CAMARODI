@@ -153,7 +153,7 @@
     .service-card:hover { transform: translateY(-4px); box-shadow: 0 12px 36px rgba(62,46,30,0.13); }
 
     .service-img { width: 100%; aspect-ratio: 4/3; overflow: hidden; }
-    .service-img img { width: 100%; height: 100%; object-fit: cover; object-position: center top; transition: transform 0.5s ease; }
+    .service-img img { width: 100%; height: 100%; object-fit: cover; object-position: center; transition: transform 0.5s ease; filter: saturate(.88) contrast(1.03) brightness(1.02); }
     .service-card:hover .service-img img { transform: scale(1.04); transform-origin: center top; }
 
     .service-card-body { padding: 1.4rem 1.6rem 1.6rem; display: flex; flex-direction: column; gap: 0.7rem; flex: 1; }
@@ -164,6 +164,7 @@
     .service-duration { display: flex; align-items: center; gap: 0.35rem; font-size: 0.78rem; color: var(--text-soft); font-weight: 400; }
     .service-price { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; font-weight: 600; color: var(--gold-dark); }
     .tag-pack { background: rgba(142,166,140,0.18); color: var(--sage); border-radius: 50px; padding: 0.18rem 0.65rem; font-size: 0.70rem; letter-spacing: 0.10em; text-transform: uppercase; }
+    .tag-new { position:absolute; top:1rem; left:1rem; z-index:2; background:rgba(62,46,30,.88); color:var(--gold-light); padding:.35rem .75rem; border-radius:50px; font-size:.68rem; letter-spacing:.12em; text-transform:uppercase; backdrop-filter:blur(8px); }
     .service-cta a { display: inline-flex; align-items: center; gap: 0.3rem; font-size: 0.78rem; font-weight: 500; letter-spacing: 0.10em; text-transform: uppercase; color: var(--gold); transition: color var(--transition); }
     .service-cta a:hover { color: var(--gold-dark); }
 
@@ -174,6 +175,26 @@
     .step-number { width: 52px; height: 52px; border-radius: 50%; background: linear-gradient(135deg,var(--gold-light),var(--gold)); display: flex; align-items: center; justify-content: center; font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 300; color: var(--white); margin: 0 auto 1.2rem; }
     .proceso-step h4 { font-size: 1.15rem; font-weight: 400; color: var(--brown); margin-bottom: 0.6rem; }
     .proceso-step p { font-size: 0.87rem; font-weight: 300; color: var(--text-soft); }
+
+    /* OPINIONES */
+    #opiniones { background: var(--cream); }
+    .reviews-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; margin-top:3rem; }
+    .review-card { background:var(--white); border:1px solid rgba(184,154,114,.2); border-radius:var(--radius); padding:1.7rem; box-shadow:0 4px 24px var(--shadow); }
+    .review-stars { color:var(--gold); letter-spacing:.15em; margin-bottom:.8rem; }
+    .review-card blockquote { font-family:'Cormorant Garamond',serif; font-size:1.2rem; line-height:1.5; color:var(--brown); }
+    .review-author { display:block; margin-top:1rem; font-size:.76rem; letter-spacing:.1em; text-transform:uppercase; color:var(--text-soft); }
+    .review-form { max-width:760px; margin:2rem auto 0; background:var(--brown); color:var(--white); padding:2.2rem; border-radius:18px; box-shadow:0 12px 40px rgba(62,46,30,.18); }
+    .review-form h3 { color:var(--gold-light); font-size:1.8rem; font-weight:300; margin-bottom:.4rem; }
+    .review-form p { color:rgba(255,255,255,.65); font-size:.9rem; margin-bottom:1.3rem; }
+    .form-grid { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+    .form-field { display:flex; flex-direction:column; gap:.35rem; text-align:left; }
+    .form-field.full { grid-column:1/-1; }
+    .form-field label { font-size:.7rem; letter-spacing:.12em; text-transform:uppercase; color:var(--gold-light); }
+    .form-field input, .form-field select, .form-field textarea { width:100%; border:1px solid rgba(255,255,255,.18); background:rgba(255,255,255,.08); color:var(--white); border-radius:8px; padding:.85rem 1rem; font:inherit; }
+    .form-field select option { color:var(--text); }
+    .form-field textarea { min-height:110px; resize:vertical; }
+    .form-field input:focus, .form-field select:focus, .form-field textarea:focus { outline:2px solid var(--gold-light); outline-offset:2px; }
+    .review-submit { margin-top:1rem; }
 
     /* UBICACION */
     #ubicacion { background: var(--brown); color: var(--white); }
@@ -219,6 +240,7 @@
     /* RESPONSIVE */
     @media (max-width: 900px) {
       .about-grid, .ubicacion-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .reviews-grid { grid-template-columns:1fr; }
       .about-badge-float { right: 0; }
       .nav-links, .nav-cta { display: none; }
       .hamburger { display: flex; }
@@ -230,6 +252,7 @@
       .proceso-grid { grid-template-columns: 1fr 1fr; }
       .contacto-card { padding: 2.5rem 1.5rem; }
       .hero-title { font-size: 2.6rem; }
+      .form-grid { grid-template-columns:1fr; }
       .wa-float { bottom: 1.2rem; right: 1.2rem; }
     }
     @media (max-width: 420px) {
@@ -255,6 +278,7 @@
         <li><a href="#about">Nosotros</a></li>
         <li><a href="#servicios">Servicios</a></li>
         <li><a href="#proceso">Experiencia</a></li>
+        <li><a href="#opiniones">Opiniones</a></li>
         <li><a href="#ubicacion">Ubicación</a></li>
         <li><a href="#contacto">Contacto</a></li>
       </ul>
@@ -275,6 +299,7 @@
     <a href="#about"     onclick="closeMobile()">Nosotros</a>
     <a href="#servicios" onclick="closeMobile()">Servicios</a>
     <a href="#proceso"   onclick="closeMobile()">Experiencia</a>
+    <a href="#opiniones" onclick="closeMobile()">Opiniones</a>
     <a href="#ubicacion" onclick="closeMobile()">Ubicación</a>
     <a href="#contacto"  onclick="closeMobile()">Contacto</a>
     <a href="https://wa.me/5491130916601?text=Hola!%20Me%20gustar%C3%ADa%20reservar%20un%20turno."
@@ -316,7 +341,7 @@
     <div class="container">
       <div class="stats-grid">
         <div class="stat-item"><span class="stat-number">+10</span><span class="stat-label">Años de experiencia</span></div>
-        <div class="stat-item"><span class="stat-number">18</span><span class="stat-label">Tratamientos</span></div>
+        <div class="stat-item"><span class="stat-number">20+</span><span class="stat-label">Tratamientos y combos</span></div>
         <div class="stat-item"><span class="stat-number">100%</span><span class="stat-label">Atención personalizada</span></div>
         <div class="stat-item"><span class="stat-number">Belgrano</span><span class="stat-label">Buenos Aires</span></div>
       </div>
@@ -401,6 +426,7 @@
         <div class="services-tabs" style="justify-content:center;margin-top:2rem;">
           <button class="tab-btn active" onclick="switchTab('masajes',this)">Masajes terapéuticos</button>
           <button class="tab-btn"        onclick="switchTab('estetica',this)">Estética y aparatología</button>
+          <button class="tab-btn"        onclick="switchTab('combos',this)">Combos</button>
         </div>
       </div>
 
@@ -415,7 +441,7 @@
               <p class="service-desc">Técnica suave y envolvente que libera tensiones acumuladas, reduce el estrés y promueve un estado de calma profunda. Ideal para el primer acercamiento al masaje.</p>
               <div class="service-meta">
                 <span class="service-duration">60 min</span>
-                <span class="service-price">$40.000</span>
+                <span class="service-price">$50.000</span>
               </div>
               <div class="service-cta"><a href="https://wa.me/5491130916601?text=Hola!%20Quiero%20reservar%20un%20Masaje%20Relajante." target="_blank" rel="noopener">Reservar &#8594;</a></div>
             </div>
@@ -428,7 +454,7 @@
               <p class="service-desc">Trabaja en profundidad sobre las contracturas musculares. Libera nudos y puntos de tensión con presión focalizada, devolviendo movilidad y alivio duradero.</p>
               <div class="service-meta">
                 <span class="service-duration">90 min</span>
-                <span class="service-price">$45.000</span>
+                <span class="service-price">$55.000</span>
               </div>
               <div class="service-cta"><a href="https://wa.me/5491130916601?text=Hola!%20Quiero%20reservar%20un%20Masaje%20Descontracturante." target="_blank" rel="noopener">Reservar &#8594;</a></div>
             </div>
@@ -441,7 +467,7 @@
               <p class="service-desc">Técnica avanzada que actúa sobre las capas musculares más profundas. Ideal para dolores crónicos, rigidez y rehabilitación de lesiones musculares.</p>
               <div class="service-meta">
                 <span class="service-duration">60 min</span>
-                <span class="service-price">$40.000</span>
+                <span class="service-price">$50.000</span>
               </div>
               <div class="service-cta"><a href="https://wa.me/5491130916601?text=Hola!%20Quiero%20reservar%20un%20Masaje%20de%20Tejido%20Profundo." target="_blank" rel="noopener">Reservar &#8594;</a></div>
             </div>
@@ -454,7 +480,7 @@
               <p class="service-desc">Diseñado para deportistas y personas activas. Prepara el cuerpo antes del esfuerzo y acelera la recuperación muscular post-actividad física.</p>
               <div class="service-meta">
                 <span class="service-duration">60 min</span>
-                <span class="service-price">$45.000</span>
+                <span class="service-price">$55.000</span>
               </div>
               <div class="service-cta"><a href="https://wa.me/5491130916601?text=Hola!%20Quiero%20reservar%20un%20Masaje%20Deportivo." target="_blank" rel="noopener">Reservar &#8594;</a></div>
             </div>
@@ -467,7 +493,7 @@
               <p class="service-desc">Abordaje integral que armoniza cuerpo, mente y espíritu. Combina distintas técnicas para crear una experiencia profunda de reconexión y equilibrio interno.</p>
               <div class="service-meta">
                 <span class="service-duration">90 min</span>
-                <span class="service-price">$50.000</span>
+                <span class="service-price">$60.000</span>
               </div>
               <div class="service-cta"><a href="https://wa.me/5491130916601?text=Hola!%20Quiero%20reservar%20un%20Masaje%20Hol%C3%ADstico." target="_blank" rel="noopener">Reservar &#8594;</a></div>
             </div>
@@ -480,7 +506,7 @@
               <p class="service-desc">Arte terapéutico japonés basado en la presión sobre meridianos energéticos. Restablece el flujo vital, alivia el dolor y promueve el equilibrio emocional.</p>
               <div class="service-meta">
                 <span class="service-duration">60 min</span>
-                <span class="service-price">$40.000</span>
+                <span class="service-price">$50.000</span>
               </div>
               <div class="service-cta"><a href="https://wa.me/5491130916601?text=Hola!%20Quiero%20reservar%20un%20Masaje%20Shiatsu." target="_blank" rel="noopener">Reservar &#8594;</a></div>
             </div>
@@ -493,7 +519,7 @@
               <p class="service-desc">Piedras de basalto volcánico calentadas a temperatura ideal que penetran en la musculatura, liberan tensiones profundas y generan una profunda sensación de calma.</p>
               <div class="service-meta">
                 <span class="service-duration">60 min</span>
-                <span class="service-price">$40.000</span>
+                <span class="service-price">$50.000</span>
               </div>
               <div class="service-cta"><a href="https://wa.me/5491130916601?text=Hola!%20Quiero%20reservar%20Masaje%20con%20Piedras%20Calientes." target="_blank" rel="noopener">Reservar &#8594;</a></div>
             </div>
@@ -506,7 +532,7 @@
               <p class="service-desc">Técnica suave y segura especialmente adaptada para el embarazo. Alivia dolores específicos, mejora la circulación y acompaña el bienestar emocional en esta etapa.</p>
               <div class="service-meta">
                 <span class="service-duration">45 min</span>
-                <span class="service-price">$40.000</span>
+                <span class="service-price">$50.000</span>
               </div>
               <div class="service-cta"><a href="https://wa.me/5491130916601?text=Hola!%20Quiero%20reservar%20un%20Masaje%20para%20Embarazadas." target="_blank" rel="noopener">Reservar &#8594;</a></div>
             </div>
@@ -519,7 +545,7 @@
               <p class="service-desc">Técnica que trabaja sobre puntos reflejos del pie vinculados a órganos y sistemas. Estimula la auto-sanación, reduce el estrés y mejora la circulación de todo el cuerpo.</p>
               <div class="service-meta">
                 <span class="service-duration">50 min</span>
-                <span class="service-price">$35.000</span>
+                <span class="service-price">$45.000</span>
               </div>
               <div class="service-cta"><a href="https://wa.me/5491130916601?text=Hola!%20Quiero%20reservar%20una%20Reflexolog%C3%ADa." target="_blank" rel="noopener">Reservar &#8594;</a></div>
             </div>
@@ -532,7 +558,7 @@
               <p class="service-desc">Masaje enriquecido con aceites esenciales de origen botánico, seleccionados según tus necesidades. La combinación del tacto y el aroma potencia el efecto terapéutico.</p>
               <div class="service-meta">
                 <span class="service-duration">90 min</span>
-                <span class="service-price">$50.000</span>
+                <span class="service-price">$60.000</span>
               </div>
               <div class="service-cta"><a href="https://wa.me/5491130916601?text=Hola!%20Quiero%20reservar%20una%20Aromaterapia." target="_blank" rel="noopener">Reservar &#8594;</a></div>
             </div>
@@ -552,7 +578,7 @@
               <p class="service-desc">Técnica manual que estimula el sistema linfático, reduce la retención de líquidos, edemas y mejora la circulación. Ideal en pre y post operatorio o como preventivo.</p>
               <div class="service-meta">
                 <span class="service-duration">45 min</span>
-                <span class="service-price">$35.000</span>
+                <span class="service-price">$45.000</span>
               </div>
               <div class="service-cta"><a href="https://wa.me/5491130916601?text=Hola!%20Quiero%20reservar%20un%20Drenaje%20Linf%C3%A1tico." target="_blank" rel="noopener">Reservar &#8594;</a></div>
             </div>
@@ -565,7 +591,7 @@
               <p class="service-desc">Tratamiento facial antienvejecimiento que nutre, hidrata y revitaliza la piel. Combina masajes, activos cosméticos premium y técnicas que devuelven luminosidad.</p>
               <div class="service-meta">
                 <span class="service-duration">45 min</span>
-                <span class="service-price">$35.000</span>
+                <span class="service-price">$45.000</span>
               </div>
               <div class="service-cta"><a href="https://wa.me/5491130916601?text=Hola!%20Quiero%20reservar%20un%20Facial%20Pro-Age." target="_blank" rel="noopener">Reservar &#8594;</a></div>
             </div>
@@ -578,7 +604,7 @@
               <p class="service-desc">Tratamiento facial completo con diagnóstico de piel, limpieza profunda, exfoliación, hidratación y activos específicos para tu tipo de piel. Resultado visible desde la primera sesión.</p>
               <div class="service-meta">
                 <span class="service-duration">60 min</span>
-                <span class="service-price">$40.000</span>
+                <span class="service-price">$50.000</span>
               </div>
               <div class="service-cta"><a href="https://wa.me/5491130916601?text=Hola!%20Quiero%20reservar%20Cosmetolog%C3%ADa%20Integral." target="_blank" rel="noopener">Reservar &#8594;</a></div>
             </div>
@@ -591,7 +617,7 @@
               <p class="service-desc">Tratamiento especializado para labios que aporta hidratación profunda, suavidad y volumen de forma natural. Deja los labios nutridos, definidos y radiantes.</p>
               <div class="service-meta">
                 <span class="service-duration">30 min</span>
-                <span class="service-price">$35.000</span>
+                <span class="service-price">$45.000</span>
               </div>
               <div class="service-cta"><a href="https://wa.me/5491130916601?text=Hola!%20Quiero%20reservar%20Hidralips." target="_blank" rel="noopener">Reservar &#8594;</a></div>
             </div>
@@ -604,7 +630,7 @@
               <p class="service-desc">Tecnología de última generación que estimula el colágeno y la elastina, mejorando la firmeza y el tono facial. Resultados visibles y progresivos con cada sesión.</p>
               <div class="service-meta">
                 <span class="service-duration">Por sesión</span>
-                <span class="service-price">Desde $25.000</span>
+                <span class="service-price">Desde $35.000</span>
               </div>
               <div class="service-cta" style="display:flex;align-items:center;gap:0.8rem;flex-wrap:wrap;">
                 <a href="https://wa.me/5491130916601?text=Hola!%20Quiero%20info%20sobre%20Radiofrecuencia%20Facial." target="_blank" rel="noopener">Consultar pack &#8594;</a>
@@ -620,7 +646,7 @@
               <p class="service-desc">Tratamiento no invasivo que reafirma y tonifica la piel corporal. Actúa sobre la flacidez, mejora la textura y modela la silueta de forma efectiva y segura.</p>
               <div class="service-meta">
                 <span class="service-duration">Por sesión</span>
-                <span class="service-price">Desde $30.000</span>
+                <span class="service-price">Desde $40.000</span>
               </div>
               <div class="service-cta" style="display:flex;align-items:center;gap:0.8rem;flex-wrap:wrap;">
                 <a href="https://wa.me/5491130916601?text=Hola!%20Quiero%20info%20sobre%20Radiofrecuencia%20Corporal." target="_blank" rel="noopener">Consultar pack &#8594;</a>
@@ -636,7 +662,7 @@
               <p class="service-desc">Tecnología ultrasónica que destruye células adiposas de forma localizada, sin cirugía. Ideal para reducir medidas en zonas específicas como abdomen, flancos y piernas.</p>
               <div class="service-meta">
                 <span class="service-duration">Por sesión</span>
-                <span class="service-price">Desde $30.000</span>
+                <span class="service-price">Desde $40.000</span>
               </div>
               <div class="service-cta" style="display:flex;align-items:center;gap:0.8rem;flex-wrap:wrap;">
                 <a href="https://wa.me/5491130916601?text=Hola!%20Quiero%20info%20sobre%20Ultracavitaci%C3%B3n." target="_blank" rel="noopener">Consultar pack &#8594;</a>
@@ -652,15 +678,105 @@
               <p class="service-desc">Tratamiento corporal que combina técnicas manuales y productos reductores de alta concentración para moldear la silueta, reducir medidas y mejorar la calidad de la piel.</p>
               <div class="service-meta">
                 <span class="service-duration">60 min</span>
-                <span class="service-price">$40.000</span>
+                <span class="service-price">$50.000</span>
               </div>
               <div class="service-cta"><a href="https://wa.me/5491130916601?text=Hola!%20Quiero%20reservar%20el%20tratamiento%20Reductor%20y%20Modelador." target="_blank" rel="noopener">Reservar &#8594;</a></div>
+            </div>
+          </div>
+
+          <div class="service-card fade-in">
+            <span class="tag-new">Nuevo</span>
+            <div class="service-img"><img src="images/tratamiento-mascara-led.png" alt="Tratamiento facial con máscara LED" loading="lazy" /></div>
+            <div class="service-card-body">
+              <h3 class="service-name">Máscara LED</h3>
+              <p class="service-desc">Fototerapia facial no invasiva que acompaña el tratamiento de acné, rojeces y signos de edad. La luz se selecciona según las necesidades de tu piel.</p>
+              <div class="service-meta">
+                <span class="service-duration">30 min</span>
+                <span class="service-price">$35.000</span>
+              </div>
+              <div class="service-cta"><a href="https://wa.me/5491130916601?text=Hola!%20Quiero%20reservar%20una%20sesi%C3%B3n%20de%20M%C3%A1scara%20LED." target="_blank" rel="noopener">Reservar &#8594;</a></div>
+            </div>
+          </div>
+
+          <div class="service-card fade-in">
+            <span class="tag-new">Nuevo</span>
+            <div class="service-img"><img src="images/tratamiento-espatula-sonica.png" alt="Limpieza facial con espátula sónica" loading="lazy" /></div>
+            <div class="service-card-body">
+              <h3 class="service-name">Espátula Sónica</h3>
+              <p class="service-desc">Limpieza ultrasónica suave y profunda que ayuda a remover impurezas y células muertas, mejorando la textura y la luminosidad sin fricción agresiva.</p>
+              <div class="service-meta">
+                <span class="service-duration">35 min</span>
+                <span class="service-price">$40.000</span>
+              </div>
+              <div class="service-cta"><a href="https://wa.me/5491130916601?text=Hola!%20Quiero%20reservar%20una%20sesi%C3%B3n%20con%20Esp%C3%A1tula%20S%C3%B3nica." target="_blank" rel="noopener">Reservar &#8594;</a></div>
             </div>
           </div>
 
         </div>
       </div>
 
+      <!-- COMBOS -->
+      <div class="tab-panel" id="tab-combos">
+        <div class="services-grid">
+          <div class="service-card fade-in">
+            <span class="tag-new">Favorito</span>
+            <div class="service-img"><img src="images/1771885547995.png" alt="Combo Glow facial" loading="lazy" /></div>
+            <div class="service-card-body">
+              <h3 class="service-name">Combo Glow Facial</h3>
+              <p class="service-desc">Cosmetología integral + espátula sónica + máscara LED. Una experiencia completa para limpiar, renovar e iluminar la piel.</p>
+              <div class="service-meta"><span class="service-duration">90 min</span><span class="service-price">$95.000</span></div>
+              <div class="service-cta"><a href="https://wa.me/5491130916601?text=Hola!%20Quiero%20reservar%20el%20Combo%20Glow%20Facial." target="_blank" rel="noopener">Reservar combo &#8594;</a></div>
+            </div>
+          </div>
+          <div class="service-card fade-in">
+            <div class="service-img"><img src="images/1771883997906.png" alt="Combo pausa y bienestar" loading="lazy" /></div>
+            <div class="service-card-body">
+              <h3 class="service-name">Combo Pausa &amp; Bienestar</h3>
+              <p class="service-desc">Masaje relajante + reflexología. Un recorrido corporal pensado para bajar el ritmo, soltar tensiones y recuperar energía.</p>
+              <div class="service-meta"><span class="service-duration">90 min</span><span class="service-price">$85.000</span></div>
+              <div class="service-cta"><a href="https://wa.me/5491130916601?text=Hola!%20Quiero%20reservar%20el%20Combo%20Pausa%20y%20Bienestar." target="_blank" rel="noopener">Reservar combo &#8594;</a></div>
+            </div>
+          </div>
+          <div class="service-card fade-in">
+            <div class="service-img"><img src="images/1771884444355.png" alt="Combo modelador corporal" loading="lazy" /></div>
+            <div class="service-card-body">
+              <h3 class="service-name">Combo Modelador</h3>
+              <p class="service-desc">Ultracavitación + radiofrecuencia corporal + masaje reductor. Tres técnicas combinadas en un protocolo personalizado.</p>
+              <div class="service-meta"><span class="service-duration">100 min</span><span class="service-price">$110.000</span></div>
+              <div class="service-cta"><a href="https://wa.me/5491130916601?text=Hola!%20Quiero%20consultar%20por%20el%20Combo%20Modelador." target="_blank" rel="noopener">Consultar combo &#8594;</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- OPINIONES -->
+  <section id="opiniones">
+    <div class="container text-center">
+      <div class="fade-in">
+        <span class="section-label">Experiencias reales</span>
+        <div class="divider"></div>
+        <h2 class="section-title">Lo que se siente,<br/>contado por quienes vinieron</h2>
+        <p class="section-subtitle">Cada experiencia nos ayuda a seguir cuidando cada detalle.</p>
+      </div>
+      <div class="reviews-grid">
+        <article class="review-card fade-in"><div class="review-stars" aria-hidden="true">✦</div><blockquote>Tu experiencia con masajes puede ayudar a otra persona a elegir el tratamiento indicado.</blockquote><span class="review-author">Compartí cómo te sentiste</span></article>
+        <article class="review-card fade-in"><div class="review-stars" aria-hidden="true">✦</div><blockquote>Contanos qué cambios notaste en tu piel después de tu tratamiento facial.</blockquote><span class="review-author">Tu opinión importa</span></article>
+        <article class="review-card fade-in"><div class="review-stars" aria-hidden="true">✦</div><blockquote>¿Probaste aparatología o un combo? Nos encantaría conocer tu experiencia.</blockquote><span class="review-author">Ayudanos a seguir mejorando</span></article>
+      </div>
+      <form class="review-form fade-in" id="reviewForm">
+        <h3>Contanos tu experiencia</h3>
+        <p>Tu opinión se enviará por WhatsApp para poder verificarla antes de publicarla.</p>
+        <div class="form-grid">
+          <div class="form-field"><label for="reviewName">Nombre</label><input id="reviewName" name="name" maxlength="40" required placeholder="Tu nombre" /></div>
+          <div class="form-field"><label for="reviewTreatment">Tratamiento</label><input id="reviewTreatment" name="treatment" maxlength="60" required placeholder="¿Qué tratamiento hiciste?" /></div>
+          <div class="form-field full"><label for="reviewRating">Calificación</label><select id="reviewRating" name="rating" required><option value="5">★★★★★ Excelente</option><option value="4">★★★★ Muy bueno</option><option value="3">★★★ Bueno</option><option value="2">★★ Regular</option><option value="1">★ Malo</option></select></div>
+          <div class="form-field full"><label for="reviewText">Tu opinión</label><textarea id="reviewText" name="review" maxlength="350" required placeholder="¿Cómo fue tu experiencia?"></textarea></div>
+        </div>
+        <button class="btn btn-primary review-submit" type="submit">Enviar opinión</button>
+      </form>
     </div>
   </section>
 
@@ -798,6 +914,7 @@
         <ul class="footer-links">
           <li><a href="#about">Nosotros</a></li>
           <li><a href="#servicios">Servicios</a></li>
+          <li><a href="#opiniones">Opiniones</a></li>
           <li><a href="#ubicacion">Ubicación</a></li>
           <li><a href="#contacto">Contacto</a></li>
         </ul>
@@ -837,6 +954,21 @@
       btn.classList.add('active');
       observeFade();
     }
+
+    document.getElementById('reviewForm').addEventListener('submit', (event) => {
+      event.preventDefault();
+      const data = new FormData(event.currentTarget);
+      const stars = '★'.repeat(Number(data.get('rating')));
+      const message = [
+        'Hola! Quiero dejar una opinión sobre mi tratamiento:',
+        '',
+        `Nombre: ${data.get('name')}`,
+        `Tratamiento: ${data.get('treatment')}`,
+        `Calificación: ${stars}`,
+        `Opinión: ${data.get('review')}`
+      ].join('\n');
+      window.open(`https://wa.me/5491130916601?text=${encodeURIComponent(message)}`, '_blank', 'noopener');
+    });
 
     function observeFade() {
       const items = document.querySelectorAll('.fade-in:not(.visible)');
