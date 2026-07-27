@@ -1012,7 +1012,8 @@
 
     reviewForm.addEventListener('submit', async (event) => {
       event.preventDefault();
-      const data = new FormData(event.currentTarget);
+      const form = event.currentTarget;
+      const data = new FormData(form);
       if (String(data.get('website')).trim()) return;
 
       const lastReviewAt = Number(localStorage.getItem(lastReviewKey) || 0);
@@ -1041,8 +1042,12 @@
           body: JSON.stringify(review)
         });
         if (!response.ok) throw new Error('No se pudo publicar la opinión');
-        localStorage.setItem(lastReviewKey, String(Date.now()));
-        event.currentTarget.reset();
+        try {
+          localStorage.setItem(lastReviewKey, String(Date.now()));
+        } catch {
+          // El almacenamiento puede estar bloqueado en navegadores privados.
+        }
+        form.reset();
         await loadReviews();
         reviewStatus.textContent = '¡Gracias! Tu opinión ya quedó publicada para todos.';
       } catch {
