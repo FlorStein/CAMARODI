@@ -196,6 +196,8 @@
     .form-field textarea { min-height:110px; resize:vertical; }
     .form-field input:focus, .form-field select:focus, .form-field textarea:focus { outline:2px solid var(--gold-light); outline-offset:2px; }
     .review-submit { margin-top:1rem; }
+    .review-status { min-height:1.5rem; margin-top:1rem; color:var(--gold-light); font-size:.85rem; }
+    .hp-field { position:absolute !important; left:-10000px !important; width:1px !important; height:1px !important; overflow:hidden !important; }
 
     /* UBICACION */
     #ubicacion { background: var(--brown); color: var(--white); }
@@ -762,21 +764,23 @@
         <h2 class="section-title">Lo que se siente,<br/>contado por quienes vinieron</h2>
         <p class="section-subtitle">Cada experiencia nos ayuda a seguir cuidando cada detalle.</p>
       </div>
-      <div class="reviews-grid">
-        <article class="review-card fade-in"><div class="review-stars" aria-hidden="true">✦</div><blockquote>Tu experiencia con masajes puede ayudar a otra persona a elegir el tratamiento indicado.</blockquote><span class="review-author">Compartí cómo te sentiste</span></article>
-        <article class="review-card fade-in"><div class="review-stars" aria-hidden="true">✦</div><blockquote>Contanos qué cambios notaste en tu piel después de tu tratamiento facial.</blockquote><span class="review-author">Tu opinión importa</span></article>
-        <article class="review-card fade-in"><div class="review-stars" aria-hidden="true">✦</div><blockquote>¿Probaste aparatología o un combo? Nos encantaría conocer tu experiencia.</blockquote><span class="review-author">Ayudanos a seguir mejorando</span></article>
+      <div class="reviews-grid" id="reviewsGrid">
+        <article class="review-card review-placeholder fade-in"><div class="review-stars" aria-hidden="true">✦</div><blockquote>Tu experiencia con masajes puede ayudar a otra persona a elegir el tratamiento indicado.</blockquote><span class="review-author">Compartí cómo te sentiste</span></article>
+        <article class="review-card review-placeholder fade-in"><div class="review-stars" aria-hidden="true">✦</div><blockquote>Contanos qué cambios notaste en tu piel después de tu tratamiento facial.</blockquote><span class="review-author">Tu opinión importa</span></article>
+        <article class="review-card review-placeholder fade-in"><div class="review-stars" aria-hidden="true">✦</div><blockquote>¿Probaste aparatología o un combo? Nos encantaría conocer tu experiencia.</blockquote><span class="review-author">Ayudanos a seguir mejorando</span></article>
       </div>
       <form class="review-form fade-in" id="reviewForm">
         <h3>Contanos tu experiencia</h3>
-        <p>Tu opinión se enviará por WhatsApp para poder verificarla antes de publicarla.</p>
+        <p>Tu opinión se publicará automáticamente y será visible para todas las personas que visiten la web.</p>
         <div class="form-grid">
+          <div class="hp-field" aria-hidden="true"><label for="reviewWebsite">No completar</label><input id="reviewWebsite" name="website" tabindex="-1" autocomplete="off" /></div>
           <div class="form-field"><label for="reviewName">Nombre</label><input id="reviewName" name="name" maxlength="40" required placeholder="Tu nombre" /></div>
           <div class="form-field"><label for="reviewTreatment">Tratamiento</label><input id="reviewTreatment" name="treatment" maxlength="60" required placeholder="¿Qué tratamiento hiciste?" /></div>
           <div class="form-field full"><label for="reviewRating">Calificación</label><select id="reviewRating" name="rating" required><option value="5">★★★★★ Excelente</option><option value="4">★★★★ Muy bueno</option><option value="3">★★★ Bueno</option><option value="2">★★ Regular</option><option value="1">★ Malo</option></select></div>
           <div class="form-field full"><label for="reviewText">Tu opinión</label><textarea id="reviewText" name="review" maxlength="350" required placeholder="¿Cómo fue tu experiencia?"></textarea></div>
         </div>
-        <button class="btn btn-primary review-submit" type="submit">Enviar opinión</button>
+        <button class="btn btn-primary review-submit" type="submit">Publicar opinión</button>
+        <div class="review-status" id="reviewStatus" role="status" aria-live="polite"></div>
       </form>
     </div>
   </section>
@@ -956,19 +960,97 @@
       observeFade();
     }
 
-    document.getElementById('reviewForm').addEventListener('submit', (event) => {
+    const supabaseUrl = 'https://tgpfeevgkiyytievdfnu.supabase.co';
+    const supabasePublishableKey = 'sb_publishable_QCr7th4sxYDzslaXLwR1kg_45Aq8YAK';
+    const opinionsEndpoint = `${supabaseUrl}/rest/v1/opiniones`;
+    const lastReviewKey = 'camarodi-ultima-opinion';
+    const reviewsGrid = document.getElementById('reviewsGrid');
+    const reviewStatus = document.getElementById('reviewStatus');
+    const reviewForm = document.getElementById('reviewForm');
+    const reviewSubmit = reviewForm.querySelector('button[type="submit"]');
+    const supabaseHeaders = {
+      apikey: supabasePublishableKey,
+      Authorization: `Bearer ${supabasePublishableKey}`
+    };
+
+    function createReviewCard(review) {
+      const card = document.createElement('article');
+      card.className = 'review-card visible';
+
+      const stars = document.createElement('div');
+      stars.className = 'review-stars';
+      stars.setAttribute('aria-label', `${review.calificacion} de 5 estrellas`);
+      stars.textContent = '★'.repeat(review.calificacion) + '☆'.repeat(5 - review.calificacion);
+
+      const quote = document.createElement('blockquote');
+      quote.textContent = `“${review.comentario}”`;
+
+      const author = document.createElement('span');
+      author.className = 'review-author';
+      author.textContent = `${review.nombre} · ${review.tratamiento}`;
+
+      card.append(stars, quote, author);
+      return card;
+    }
+
+    async function loadReviews() {
+      try {
+        const response = await fetch(
+          `${opinionsEndpoint}?select=id,nombre,tratamiento,calificacion,comentario,created_at&order=created_at.desc&limit=12`,
+          { headers: supabaseHeaders }
+        );
+        if (!response.ok) throw new Error('No se pudieron cargar las opiniones');
+        const reviews = await response.json();
+        if (!reviews.length) return;
+        reviewsGrid.replaceChildren(...reviews.map(createReviewCard));
+      } catch {
+        reviewStatus.textContent = 'Las opiniones no están disponibles por el momento.';
+      }
+    }
+
+    loadReviews();
+
+    reviewForm.addEventListener('submit', async (event) => {
       event.preventDefault();
       const data = new FormData(event.currentTarget);
-      const stars = '★'.repeat(Number(data.get('rating')));
-      const message = [
-        'Hola! Quiero dejar una opinión sobre mi tratamiento:',
-        '',
-        `Nombre: ${data.get('name')}`,
-        `Tratamiento: ${data.get('treatment')}`,
-        `Calificación: ${stars}`,
-        `Opinión: ${data.get('review')}`
-      ].join('\n');
-      window.open(`https://wa.me/5491130916601?text=${encodeURIComponent(message)}`, '_blank', 'noopener');
+      if (String(data.get('website')).trim()) return;
+
+      const lastReviewAt = Number(localStorage.getItem(lastReviewKey) || 0);
+      if (Date.now() - lastReviewAt < 60000) {
+        reviewStatus.textContent = 'Esperá un minuto antes de publicar otra opinión.';
+        return;
+      }
+
+      const review = {
+        nombre: String(data.get('name')).trim(),
+        tratamiento: String(data.get('treatment')).trim(),
+        calificacion: Number(data.get('rating')),
+        comentario: String(data.get('review')).trim()
+      };
+      reviewSubmit.disabled = true;
+      reviewSubmit.textContent = 'Publicando…';
+      reviewStatus.textContent = '';
+      try {
+        const response = await fetch(opinionsEndpoint, {
+          method: 'POST',
+          headers: {
+            ...supabaseHeaders,
+            'Content-Type': 'application/json',
+            Prefer: 'return=minimal'
+          },
+          body: JSON.stringify(review)
+        });
+        if (!response.ok) throw new Error('No se pudo publicar la opinión');
+        localStorage.setItem(lastReviewKey, String(Date.now()));
+        event.currentTarget.reset();
+        await loadReviews();
+        reviewStatus.textContent = '¡Gracias! Tu opinión ya quedó publicada para todos.';
+      } catch {
+        reviewStatus.textContent = 'No pudimos publicar la opinión. Revisá los datos e intentá nuevamente.';
+      } finally {
+        reviewSubmit.disabled = false;
+        reviewSubmit.textContent = 'Publicar opinión';
+      }
     });
 
     function observeFade() {
