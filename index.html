@@ -120,6 +120,17 @@
     .stat-number { font-family: 'Cormorant Garamond', serif; font-size: 2.4rem; font-weight: 300; color: var(--gold-light); line-height: 1; display: block; }
     .stat-label { font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.55); }
 
+    /* MEDIOS DE PAGO */
+    .payment-strip { background: linear-gradient(100deg,#e8f7fd 0%,#f8fbfc 50%,#eef8f2 100%); border-bottom:1px solid rgba(0,158,227,.18); padding:1.25rem 0; }
+    .payment-inner { display:flex; align-items:center; justify-content:center; gap:1.4rem; }
+    .payment-mark { width:48px; height:48px; border-radius:50%; background:#009ee3; color:var(--white); display:flex; align-items:center; justify-content:center; font-family:'Cormorant Garamond',serif; font-size:1.65rem; font-weight:600; box-shadow:0 6px 18px rgba(0,158,227,.22); flex-shrink:0; }
+    .payment-copy { display:flex; align-items:baseline; gap:.8rem; flex-wrap:wrap; }
+    .payment-copy strong { font-family:'Cormorant Garamond',serif; font-size:1.65rem; font-weight:600; line-height:1; color:var(--brown); }
+    .payment-copy span { font-size:.85rem; letter-spacing:.09em; text-transform:uppercase; color:var(--text-soft); }
+    .payment-copy b { color:#008fd0; font-weight:500; }
+    .payment-link { font-size:.76rem; font-weight:500; letter-spacing:.12em; text-transform:uppercase; color:#008fd0; border-bottom:1px solid rgba(0,143,208,.35); padding-bottom:.15rem; transition:all var(--transition); }
+    .payment-link:hover { color:var(--brown); border-color:var(--brown); }
+
     /* ABOUT */
     #about { background: var(--cream); }
     .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
@@ -256,6 +267,12 @@
       .contacto-card { padding: 2.5rem 1.5rem; }
       .hero-title { font-size: 2.6rem; }
       .form-grid { grid-template-columns:1fr; }
+      .payment-inner { gap:.9rem; justify-content:flex-start; }
+      .payment-mark { width:42px; height:42px; }
+      .payment-copy { gap:.25rem .55rem; flex:1; }
+      .payment-copy strong { font-size:1.4rem; }
+      .payment-copy span { width:100%; font-size:.72rem; }
+      .payment-link { display:none; }
       .wa-float { bottom: 1.2rem; right: 1.2rem; }
     }
     @media (max-width: 420px) {
@@ -350,6 +367,18 @@
       </div>
     </div>
   </div>
+
+  <!-- MEDIOS DE PAGO -->
+  <aside class="payment-strip" aria-label="Medios de pago">
+    <div class="container payment-inner">
+      <div class="payment-mark" aria-hidden="true">$</div>
+      <div class="payment-copy">
+        <strong>Mercado Pago</strong>
+        <span>Pagá tus tratamientos en <b>hasta 3 cuotas</b></span>
+      </div>
+      <a class="payment-link" href="https://wa.me/5491130916601?text=Hola!%20Quiero%20reservar%20un%20tratamiento%20y%20pagar%20con%20Mercado%20Pago%20en%203%20cuotas." target="_blank" rel="noopener">Reservar ahora &#8594;</a>
+    </div>
+  </aside>
 
   <!-- ABOUT -->
   <section id="about">
