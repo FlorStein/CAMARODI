@@ -794,9 +794,8 @@
         <p class="section-subtitle">Cada experiencia nos ayuda a seguir cuidando cada detalle.</p>
       </div>
       <div class="reviews-grid" id="reviewsGrid">
-        <article class="review-card review-placeholder fade-in"><div class="review-stars" aria-hidden="true">✦</div><blockquote>Tu experiencia con masajes puede ayudar a otra persona a elegir el tratamiento indicado.</blockquote><span class="review-author">Compartí cómo te sentiste</span></article>
-        <article class="review-card review-placeholder fade-in"><div class="review-stars" aria-hidden="true">✦</div><blockquote>Contanos qué cambios notaste en tu piel después de tu tratamiento facial.</blockquote><span class="review-author">Tu opinión importa</span></article>
-        <article class="review-card review-placeholder fade-in"><div class="review-stars" aria-hidden="true">✦</div><blockquote>¿Probaste aparatología o un combo? Nos encantaría conocer tu experiencia.</blockquote><span class="review-author">Ayudanos a seguir mejorando</span></article>
+        <article class="review-card review-placeholder fade-in"><div class="review-stars" aria-label="5 de 5 estrellas">★★★★★</div><blockquote>“Excelente sería poco, una verdadera experiencia fabulosa”</blockquote><span class="review-author">Claudio Patricio · Masajes descontracturantes</span></article>
+        <article class="review-card review-placeholder fade-in"><div class="review-stars" aria-label="5 de 5 estrellas">★★★★★</div><blockquote>“Súper recomendable, accesible y con muy buenos resultados.”</blockquote><span class="review-author">Flor · Radiofrecuencia Facial</span></article>
       </div>
       <form class="review-form fade-in" id="reviewForm">
         <h3>Contanos tu experiencia</h3>
@@ -1033,7 +1032,7 @@
         if (!reviews.length) return;
         reviewsGrid.replaceChildren(...reviews.map(createReviewCard));
       } catch {
-        reviewStatus.textContent = 'Las opiniones no están disponibles por el momento.';
+        reviewStatus.textContent = 'Las opiniones verificadas siguen visibles. Las nuevas publicaciones estarán disponibles cuando se restablezca la conexión.';
       }
     }
 
