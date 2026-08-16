@@ -796,6 +796,7 @@
       <div class="reviews-grid" id="reviewsGrid">
         <article class="review-card review-placeholder fade-in"><div class="review-stars" aria-label="5 de 5 estrellas">★★★★★</div><blockquote>“Excelente sería poco, una verdadera experiencia fabulosa”</blockquote><span class="review-author">Claudio Patricio · Masajes descontracturantes</span></article>
         <article class="review-card review-placeholder fade-in"><div class="review-stars" aria-label="5 de 5 estrellas">★★★★★</div><blockquote>“Súper recomendable, accesible y con muy buenos resultados.”</blockquote><span class="review-author">Flor · Radiofrecuencia Facial</span></article>
+        <article class="review-card review-placeholder fade-in"><div class="review-stars" aria-label="5 de 5 estrellas">★★★★★</div><blockquote>“Excelente profesional”</blockquote><span class="review-author">Ari · Ultracavitación</span></article>
       </div>
       <form class="review-form fade-in" id="reviewForm">
         <h3>Contanos tu experiencia</h3>
@@ -1032,7 +1033,17 @@
         if (!reviews.length) return;
         reviewsGrid.replaceChildren(...reviews.map(createReviewCard));
       } catch {
-        reviewStatus.textContent = 'Las opiniones verificadas siguen visibles. Las nuevas publicaciones estarán disponibles cuando se restablezca la conexión.';
+        try {
+          const backupResponse = await fetch('data/opiniones.json', { cache: 'no-store' });
+          if (!backupResponse.ok) throw new Error('No se pudo cargar el respaldo');
+          const backupReviews = await backupResponse.json();
+          if (backupReviews.length) {
+            reviewsGrid.replaceChildren(...backupReviews.map(createReviewCard));
+          }
+          reviewStatus.textContent = 'Opiniones recuperadas desde nuestra copia segura.';
+        } catch {
+          reviewStatus.textContent = 'Las opiniones verificadas siguen visibles. Las nuevas publicaciones estarán disponibles cuando se restablezca la conexión.';
+        }
       }
     }
 
